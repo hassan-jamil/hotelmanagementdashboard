@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotelmanagementapp/screens/dashboard/dashboard_screen.dart';
 import 'package:hotelmanagementapp/screens/register/basic_information_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -128,7 +129,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: double.infinity,
                 height: 48,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DashboardScreen(),
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF007AFF),
                     shape: RoundedRectangleBorder(

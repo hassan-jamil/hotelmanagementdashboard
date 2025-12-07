@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hotelmanagementapp/screens/hotel_picture_screen.dart';
+import 'package:hotelmanagementapp/screens/hotelpic/hotel_picture_screen.dart';
 
 class LocationInfoSimple extends StatefulWidget {
   @override

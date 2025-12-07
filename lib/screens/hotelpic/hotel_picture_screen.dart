@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:hotelmanagementapp/screens/dashboard/dashboard_screen.dart';
 import 'package:image_picker/image_picker.dart';
 
 class HotelPicturesScreen extends StatefulWidget {
@@ -79,36 +80,35 @@ class _HotelPicturesScreenState extends State<HotelPicturesScreen> {
                       color: Colors.grey.shade200,
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: images[index] == null
-                        ? Center(
-                      child: Icon(Icons.add, size: 30),
-                    )
-                        : Stack(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.file(
-                            images[index]!,
-                            width: double.infinity,
-                            height: double.infinity,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                    child:
+                        images[index] == null
+                            ? Center(child: Icon(Icons.add, size: 30))
+                            : Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.file(
+                                    images[index]!,
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
 
-                        // Small + button on top
-                        Positioned(
-                          right: 8,
-                          top: 8,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
+                                // Small + button on top
+                                Positioned(
+                                  right: 8,
+                                  top: 8,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Icon(Icons.add, size: 20),
+                                  ),
+                                ),
+                              ],
                             ),
-                            child: Icon(Icons.add, size: 20),
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
                 );
               },
@@ -121,10 +121,20 @@ class _HotelPicturesScreenState extends State<HotelPicturesScreen> {
               width: double.infinity,
               height: 55,
               child: ElevatedButton(
-                onPressed: isButtonActive ? () {} : null,
+                onPressed:
+                    isButtonActive
+                        ? () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DashboardScreen(),
+                            ),
+                          );
+                        }
+                        : null,
                 style: ElevatedButton.styleFrom(
                   backgroundColor:
-                  isButtonActive ? Colors.blue : Colors.grey.shade300,
+                      isButtonActive ? Colors.blue : Colors.grey.shade300,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
