@@ -1,0 +1,32 @@
+import '../models/booking_model.dart';
+
+List<BookingModel> dummyBookings = [
+  BookingModel(
+    id: "CALT82920399",
+    room: "406",
+    status: "Completed",
+    date: "15-01-2023",
+    customerName: "Ahmed Ali",
+    phone: "+923001112233",
+    email: "ahmed.ali@example.com",
+    paymentType: "Credit Card",
+    paymentStatus: "Paid",
+    days: "3 Days",
+    arrivalDate: "12-01-2023",
+    lastCheckout: "15-01-2023",
+  ),
+  BookingModel(
+    id: "CALT82920372",
+    room: "403",
+    status: "Ongoing",
+    date: "13-01-2023",
+    customerName: "Hassan Jamil",
+    phone: "+923004445566",
+    email: "hassan.jamil@example.com",
+    paymentType: "Cash",
+    paymentStatus: "Pending",
+    days: "2 Days",
+    arrivalDate: "11-01-2023",
+    lastCheckout: "13-01-2023",
+  ),
+];
