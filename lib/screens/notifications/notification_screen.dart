@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../widgets/custom_appbar.dart';
-import '../../widgets/bottom_navbar.dart';
-
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
 
@@ -9,13 +7,6 @@ class NotificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        actions: [  BackButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        )],
-      ),
       body: Column(
         children: [
           const SizedBox(height: 45),

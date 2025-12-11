@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hotelmanagementapp/screens/auth/forgot_pin_screen.dart';
 import 'package:hotelmanagementapp/screens/dashboard/dashboard_screen.dart';
 import 'package:hotelmanagementapp/screens/register/basic_information_screen.dart';
+
+import '../../routes/app_routes.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -21,10 +24,6 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-        ),
         title: const Text(
           "Login",
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
@@ -114,7 +113,14 @@ class _LoginScreenState extends State<LoginScreen> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ForgotPinScreen(),
+                      ),
+                    );
+                  },
                   child: const Text(
                     "Forgot Pin",
                     style: TextStyle(color: Colors.blue),
@@ -130,12 +136,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 48,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DashboardScreen(),
-                      ),
-                    );
+                    Navigator.pushReplacementNamed(context, AppRoutes.dashboard);
+
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF007AFF),

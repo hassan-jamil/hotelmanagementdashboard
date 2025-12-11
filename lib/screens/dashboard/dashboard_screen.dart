@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotelmanagementapp/screens/booking_details/booking_details_screen.dart';
 import 'package:hotelmanagementapp/screens/search/search_booking_screen.dart';
-import 'package:hotelmanagementapp/widgets/search_input.dart';
 import '../../widgets/dashboard_stats.dart';
 import '../../dummy/dummy_data.dart';
 import '../../models/booking_model.dart';
@@ -18,9 +17,6 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF5F5F5),
-
-      bottomNavigationBar: BottomNavBar(currentIndex: 0),
-
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),

@@ -8,9 +8,12 @@ class BookingModel {
   final String date;
   final String paymentType;
   final String paymentStatus;
-  final String days;
+  final int days;
   final String arrivalDate;
   final String lastCheckout;
+  final String amount;
+  final String reservationType;
+  final String customer;
 
   BookingModel({
     required this.id,
@@ -25,5 +28,8 @@ class BookingModel {
     required this.days,
     required this.arrivalDate,
     required this.lastCheckout,
+    required this.amount,
+    required this.reservationType,
+    required this.customer,
   });
 }

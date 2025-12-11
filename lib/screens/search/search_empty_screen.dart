@@ -18,7 +18,6 @@ class SearchEmptyScreen extends StatelessWidget {
         padding: EdgeInsets.all(20),
         child: EmptyState(message: "No search result!", icon: Icons.search_off),
       ),
-      bottomNavigationBar:  BottomNavBar(currentIndex: 1),
     );
   }
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import '../screens/booking/bookings_screen.dart';
 
-// Splash + Login
+import '../screens/navigation/navigation_controller.dart';
 import '../screens/splash/splash_screen.dart';
 import '../screens/login/login_screen.dart';
 
-// Dashboard Module
 import '../screens/dashboard/dashboard_screen.dart';
 import '../screens/search/search_booking_screen.dart';
 import '../screens/booking_details/booking_details_screen.dart';
@@ -17,24 +17,29 @@ class AppRoutes {
 
   // --- DASHBOARD ROUTES ---
   static const String dashboard = "/dashboard";
+  static const String bookingsScreen = "/bookings";
   static const String searchBookings = "/search-bookings";
   static const String bookingDetails = "/booking-details";
   static const String notifications = "/notifications";
 
-  // --- ROUTE GENERATOR (Handles All Screens) ---
+  // --- ROUTE GENERATOR ---
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
 
-    /// --- AUTH SCREENS ---
+    /// AUTH
       case splashScreen:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
 
       case loginScreen:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
 
-    /// --- DASHBOARD MODULE SCREENS ---
+    /// DASHBOARD
       case dashboard:
-        return MaterialPageRoute(builder: (_) => DashboardScreen());
+        return MaterialPageRoute(builder: (_) => const NavigationController());
+
+
+      case bookingsScreen:
+        return MaterialPageRoute(builder: (_) => BookingsScreen());
 
       case searchBookings:
         return MaterialPageRoute(builder: (_) => SearchBookingScreen());
@@ -45,7 +50,6 @@ class AppRoutes {
       case notifications:
         return MaterialPageRoute(builder: (_) => NotificationScreen());
 
-    /// --- DEFAULT FALLBACK ---
       default:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
     }

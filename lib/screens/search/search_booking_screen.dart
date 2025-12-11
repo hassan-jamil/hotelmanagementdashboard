@@ -32,8 +32,6 @@ class SearchBookingScreen extends StatelessWidget {
           )
         ],
       ),
-
-      bottomNavigationBar:  BottomNavBar(currentIndex: 1),
     );
   }
 }

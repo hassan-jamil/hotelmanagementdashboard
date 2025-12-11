@@ -14,7 +14,6 @@ class SearchLoadingScreen extends StatelessWidget {
         elevation: 0,
       ),
       body: const Center(child: CircularProgressIndicator()),
-      bottomNavigationBar:  BottomNavBar(currentIndex: 1),
     );
   }
 }

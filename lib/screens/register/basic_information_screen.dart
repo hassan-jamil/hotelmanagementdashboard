@@ -29,10 +29,6 @@ class _BasicInformationScreenState extends State<BasicInformationScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-        ),
         title: const Text(
           "Basic Information",
           style: TextStyle(

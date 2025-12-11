@@ -89,7 +89,7 @@ class BookingDetailsScreen extends StatelessWidget {
                   _labelValue("Customer Name", booking.customerName),
                   _labelValue("Phone No", booking.phone),
                   _labelValue("Email Address", booking.email),
-                  _labelValue("Number of days", booking.days),
+                  _labelValue("Number of days", "${booking.days} Days"),
                   _labelValue("Date of arrival", booking.arrivalDate),
                   _labelValue("Last checkout", booking.lastCheckout),
                 ],
@@ -123,8 +123,6 @@ class BookingDetailsScreen extends StatelessWidget {
           ],
         ),
       ),
-
-      bottomNavigationBar: BottomNavBar(currentIndex: 0),
     );
   }
 _labelValue(String label, String value, {Color? valueColor}) {
