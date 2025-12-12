@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hotelmanagementapp/dummy/dummy_data.dart';
+import 'package:hotelmanagementapp/screens/booking/booking_detail_screen.dart';
 import 'package:hotelmanagementapp/widgets/booking_tile.dart';
+
 class BookingsScreen extends StatefulWidget {
   const BookingsScreen({super.key});
 
@@ -69,7 +71,7 @@ class _BookingsScreenState extends State<BookingsScreen> {
                 itemBuilder: (context, index) {
                   final booking = dummyBookings[index];
 
-                  // Filter
+                  // ---------------- FILTER CORRECTLY ----------------
                   if (selectedTab == 0 && booking.status != "Ongoing") {
                     return const SizedBox.shrink();
                   }
@@ -77,7 +79,22 @@ class _BookingsScreenState extends State<BookingsScreen> {
                     return const SizedBox.shrink();
                   }
 
-                  return BookingTile(booking: booking);
+                  return GestureDetector(
+                    onTap: () async {
+                      final updated = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => BookingDetailsScreen(booking: booking),
+                        ),
+                      );
+
+                      // REFRESH LIST AFTER UPDATE
+                      if (updated == true || updated == "updated") {
+                        setState(() {});
+                      }
+                    },
+                    child: BookingTile(booking: booking),
+                  );
                 },
               ),
             ),
@@ -91,6 +108,7 @@ class _BookingsScreenState extends State<BookingsScreen> {
 
   Widget _tabButton(String text, int index) {
     final bool isSelected = selectedTab == index;
+
     return Expanded(
       child: GestureDetector(
         onTap: () => setState(() => selectedTab = index),

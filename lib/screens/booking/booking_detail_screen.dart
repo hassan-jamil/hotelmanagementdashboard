@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:hotelmanagementapp/models/booking_model.dart';
 import 'package:hotelmanagementapp/screens/booking/booking_status_sheet.dart';
+import 'package:hotelmanagementapp/screens/booking/create_booking_screen.dart';
 import 'package:hotelmanagementapp/screens/booking/edit_days_sheet.dart';
+import 'package:hotelmanagementapp/screens/booking/more_action_sheet.dart';
 
 import 'customer_details_sheet.dart';
 
-class BookingDetailsScreen extends StatelessWidget {
+class BookingDetailsScreen extends StatefulWidget {
   final BookingModel booking;
 
   const BookingDetailsScreen({super.key, required this.booking});
 
+  @override
+  State<BookingDetailsScreen> createState() => _BookingDetailsScreenState();
+}
+
+class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,12 +62,12 @@ class BookingDetailsScreen extends StatelessWidget {
             const SizedBox(height: 14),
 
             Text(
-              booking.id,
+              widget.booking.id,
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
 
             Text(
-              "Standard Rooms • Room ${booking.room}",
+              "Standard Rooms • Room ${widget.booking.room}",
               style: const TextStyle(color: Colors.grey),
             ),
 
@@ -75,18 +82,18 @@ class BookingDetailsScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  _row("Status", booking.status),
-                  _row("Booking ID", booking.id),
-                  _row("Room no", booking.room),
-                  _row("Reservation type", booking.paymentType),
-                  _row("Booking Status", booking.paymentStatus),
-                  _row("Customer Name", booking.customerName),
-                  _row("Phone No", booking.phone),
-                  _row("Email Address", booking.email),
-                  _row("Number of days", booking.days.toString()),
-                  _row("Date of arrival", booking.date),
+                  _row("Status", widget.booking.status),
+                  _row("Booking ID", widget.booking.id),
+                  _row("Room no", widget.booking.room),
+                  _row("Reservation type", widget.booking.paymentType),
+                  _row("Booking Status", widget.booking.paymentStatus),
+                  _row("Customer Name", widget.booking.customerName),
+                  _row("Phone No", widget.booking.phone),
+                  _row("Email Address", widget.booking.email),
+                  _row("Number of days", widget.booking.days.toString()),
+                  _row("Date of arrival", widget.booking.date),
                   _row("No of Check-In", "0"),
-                  _row("Amount in Naira", "₦${booking.amount}"),
+                  _row("Amount in Naira", "₦${widget.booking.amount}"),
                 ],
               ),
             ),
@@ -94,6 +101,7 @@ class BookingDetailsScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
             /// CHECK-IN BUTTON
+            /// ACTION BUTTON (Check-In / Re-Booking)
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -104,12 +112,27 @@ class BookingDetailsScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
+
                 onPressed: () {
-                  _showMoreActions(context);
+                  if (widget.booking.status == "Completed") {
+                    // 👉 RE-BOOKING ACTION
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CreateBookingScreen(),
+                      ),
+                    );
+                  } else {
+                    // 👉 CHECK-IN ACTION
+                    _showMoreActions(context);
+                  }
                 },
-                child: const Text(
-                  "Check - In",
-                  style: TextStyle(
+
+                child: Text(
+                  widget.booking.status == "Completed"
+                      ? "Re-Booking"
+                      : "Check-In",
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -145,14 +168,14 @@ class BookingDetailsScreen extends StatelessWidget {
                 children: [
                   Text(
                     "More Actions",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                   ),
-                 IconButton(onPressed: () {
-                   Navigator.pop(context);
-                 }, icon: Icon(Icons.close),),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(Icons.close),
+                  ),
                 ],
               ),
 
@@ -161,11 +184,12 @@ class BookingDetailsScreen extends StatelessWidget {
               _BottomItem(
                 icon: Icons.person,
                 text: "View customer details",
-                onTap: ()  {
+                onTap: () {
                   Navigator.pop(context);
                   showModalBottomSheet(
                     context: context,
-                    builder: (_) => CustomerDetailsSheet(booking: booking),
+                    builder:
+                        (_) => CustomerDetailsSheet(booking: widget.booking),
                   );
                 },
               ),
@@ -173,11 +197,11 @@ class BookingDetailsScreen extends StatelessWidget {
               _BottomItem(
                 icon: Icons.edit_calendar_outlined,
                 text: "Edit no of days",
-                onTap: ()  {
+                onTap: () {
                   Navigator.pop(context);
                   showModalBottomSheet(
                     context: context,
-                    builder: (_) => EditDaysSheet(days: booking.days,),
+                    builder: (_) => EditDaysSheet(days: widget.booking.days),
                   );
                 },
               ),
@@ -189,7 +213,10 @@ class BookingDetailsScreen extends StatelessWidget {
                   Navigator.pop(context);
                   showModalBottomSheet(
                     context: context,
-                    builder: (_) => BookingStatusSheet(currentStatus: booking.paymentType,),
+                    builder:
+                        (_) => BookingStatusSheet(
+                          currentStatus: widget.booking.paymentType,
+                        ),
                   );
                 },
               ),
@@ -243,12 +270,7 @@ class _BottomItem extends StatelessWidget {
 
             const SizedBox(width: 15),
 
-            Expanded(
-              child: Text(
-                text,
-                style: const TextStyle(fontSize: 15),
-              ),
-            ),
+            Expanded(child: Text(text, style: const TextStyle(fontSize: 15))),
 
             const Icon(Icons.arrow_forward_ios, size: 17),
           ],

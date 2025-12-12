@@ -10,14 +10,15 @@ class BookingTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
+      onTap: () async {
+        final updated = await Navigator.push(
           context,
           MaterialPageRoute(
             builder: (_) => BookingDetailsScreen(booking: booking),
           ),
         );
       },
+
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12),
         child: Row(

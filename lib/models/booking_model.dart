@@ -1,19 +1,19 @@
 class BookingModel {
-  final String id;
-  final String status;
-  final String room;
-  final String customerName;
-  final String phone;
-  final String email;
-  final String date;
-  final String paymentType;
-  final String paymentStatus;
-  final int days;
-  final String arrivalDate;
-  final String lastCheckout;
-  final String amount;
-  final String reservationType;
-  final String customer;
+  String id;
+  String status;
+  String room;
+  String customerName;
+  String phone;
+  String email;
+  String date;
+  String paymentType;
+  String paymentStatus;
+  int days;
+  String arrivalDate;
+  String lastCheckout;
+  String amount;
+  String reservationType;
+  String customer;
 
   BookingModel({
     required this.id,
